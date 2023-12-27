@@ -12,7 +12,7 @@ const cartController = {
             });
         }
 
-        const postResponse = await cartService.handleAddToCartService();
+        const postResponse = await cartService.handleAddToCartService(userId, productId);
         if (postResponse.errorCode !== 0)
             return res.status(404).json(postResponse);
         return res.status(200).json(postResponse);
