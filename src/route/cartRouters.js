@@ -20,6 +20,11 @@ let initCartRouters = (app) => {
         authentication.verifyToken,
         cartController.handleUpdateCart
     );
+    router.delete(
+        "/deleteCartItem/:userId",
+        authentication.verifyToken,
+        cartController.handleDeleteCartItem
+    );
 
     return app.use("/api/v1/cart", router);
 };

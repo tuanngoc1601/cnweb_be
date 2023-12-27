@@ -80,6 +80,23 @@ const cartService = {
             }
         });
     },
+    handleDeleteCartItemService: (userId, productId) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const item = await db.Cart_Item.findOne({
+                    where: { user_id: userId, product_id: productId },
+                });
+                await item.destroy();
+
+                resolve({
+                    errorCode: 0,
+                    message: "Cart item deleted successfully",
+                });
+            } catch (e) {
+                reject(e);
+            }
+        });
+    },
 };
 
 module.exports = cartService;
