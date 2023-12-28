@@ -5,6 +5,7 @@ import viewEngine from "./config/viewEngine";
 import initAuthRoutes from "./route/auth";
 import initProductRouters from "./route/productRoutes";
 import initCartRouters from "./route/cartRouters";
+import initOrderRouters from "./route/orderRouters";
 import connectDB from "./config/connectDB";
 import cors from "cors";
 
@@ -27,6 +28,7 @@ viewEngine(app);
 initAuthRoutes(app);
 initProductRouters(app);
 initCartRouters(app);
+initOrderRouters(app);
 
 connectDB();
 
