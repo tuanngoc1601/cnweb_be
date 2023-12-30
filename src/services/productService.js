@@ -5,10 +5,12 @@ const productService = {
         return new Promise(async (resolve, reject) => {
             try {
                 const products = await db.Product.findAll({
-                    include: [{
-                        model: db.Category,
-                        attributes: ['name', 'description'],
-                    }],
+                    include: [
+                        {
+                            model: db.Category,
+                            attributes: ["name", "description"],
+                        },
+                    ],
                     raw: true,
                 });
                 resolve(products);
@@ -16,7 +18,32 @@ const productService = {
                 reject(e);
             }
         });
-    }
+    },
+    getAllCategoriesService: () => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const categories = await db.Category.findAll({
+                    raw: true,
+                });
+                resolve(categories);
+            } catch (e) {
+                reject(e);
+            }
+        });
+    },
+    getProductsByCategoryIdService: (categoryId) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const products = await db.Product.findAll({
+                    where: { category_id: categoryId },
+                    raw: true,
+                });
+                resolve(products);
+            } catch (e) {
+                reject(e);
+            }
+        });
+    },
 };
 
 module.exports = productService;
