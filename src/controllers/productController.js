@@ -34,6 +34,24 @@ const productController = {
             data: products,
         });
     },
+    handleGetProductById: async (req, res) => {
+        const productId = req.params.productId;
+        if (!productId) {
+            return res.status(404).json({
+                errorCode: 1,
+                message: "Missing inputs parameter!",
+            });
+        }
+
+        const product = await productService.handleGetProductByIdService(
+            productId
+        );
+        return res.status(200).json({
+            errorCode: 0,
+            message: "Ok",
+            product: product,
+        });
+    },
 };
 
 module.exports = productController;

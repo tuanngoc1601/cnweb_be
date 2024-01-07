@@ -18,7 +18,12 @@ let initProductRouters = (app) => {
     router.get(
         "/getProductByCategoryId/:categoryId",
         authentication.verifyToken,
-        productController.handleGetProductByCategoryId,
+        productController.handleGetProductByCategoryId
+    );
+    router.get(
+        "/getProductById/:productId",
+        authentication.verifyToken,
+        productController.handleGetProductById
     );
 
     return app.use("/api/v1/product", router);

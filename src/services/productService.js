@@ -44,6 +44,25 @@ const productService = {
             }
         });
     },
+    handleGetProductByIdService: (productId) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const product = await db.Product.findOne({
+                    include: [
+                        {
+                            model: db.Category,
+                            attributes: ["name", "description"],
+                        },
+                    ],
+                    where: { id: productId },
+                    raw: true,
+                });
+                resolve(product);
+            } catch (e) {
+                reject(e);
+            }
+        });
+    },
 };
 
 module.exports = productService;

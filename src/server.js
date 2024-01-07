@@ -6,6 +6,7 @@ import initAuthRoutes from "./route/auth";
 import initProductRouters from "./route/productRoutes";
 import initCartRouters from "./route/cartRouters";
 import initOrderRouters from "./route/orderRouters";
+import initReviewRouters from "./route/reviewRouters";
 import connectDB from "./config/connectDB";
 import cors from "cors";
 
@@ -29,6 +30,7 @@ initAuthRoutes(app);
 initProductRouters(app);
 initCartRouters(app);
 initOrderRouters(app);
+initReviewRouters(app);
 
 connectDB();
 
