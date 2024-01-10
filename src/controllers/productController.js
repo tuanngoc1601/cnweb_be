@@ -52,6 +52,30 @@ const productController = {
             product: product,
         });
     },
+    handleCreateNewProduct: async (req, res) => {
+        const newProduct = req.body;
+        if (!newProduct) {
+            return res.status(404).json({
+                errorCode: 1,
+                message: "Missing inputs parameter!",
+            });
+        }
+
+        const response = await productService.handlePostNewProductService(newProduct);
+        return res.status(200).json(response);
+    },
+    handleDeleteProduct: async (req, res) => {
+        const productId = req.body.productId;
+        if(!productId) {
+            return res.status(404).json({
+                errorCode: 1,
+                message: "Missing inputs parameter!",
+            });
+        }
+
+        const response = await productService.handleDeleteProductService(productId);
+        return res.status(200).json(response);
+    },
 };
 
 module.exports = productController;

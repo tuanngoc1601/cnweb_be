@@ -63,6 +63,37 @@ const productService = {
             }
         });
     },
+    handlePostNewProductService: (newProduct) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                await db.Product.create(newProduct);
+                resolve({
+                    errorCode: 0,
+                    message: "Ok",
+                });
+            } catch (e) {
+                reject(e);
+            }
+        });
+    },
+    handleDeleteProductService: (productId) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const product = await db.Product.findOne({
+                    where: { id: productId },
+                });
+
+                await product.destroy();
+
+                resolve({
+                    errorCode: 0,
+                    message: "Product deleted successfully",
+                });
+            } catch (e) {
+                reject(e);
+            }
+        });
+    },
 };
 
 module.exports = productService;

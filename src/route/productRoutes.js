@@ -25,6 +25,16 @@ let initProductRouters = (app) => {
         authentication.verifyToken,
         productController.handleGetProductById
     );
+    router.post(
+        "/postNewProduct",
+        authentication.verifyToken,
+        productController.handleCreateNewProduct
+    );
+    router.delete(
+        "/deleteProduct",
+        authentication.verifyToken,
+        productController.handleDeleteProduct
+    );
 
     return app.use("/api/v1/product", router);
 };
