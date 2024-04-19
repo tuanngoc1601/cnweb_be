@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon --exec ./node_modules/.bin/babel-node src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-src": "babel src -d build --copy-files",
+    "build": "node build/server.js"
   },
   "author": "TuanNgoc",
   "license": "ISC",
@@ -21,9 +23,10 @@
     "mysql2": "^2.2.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
     "@babel/node": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-env": "^7.24.4",
     "nodemon": "^2.0.19",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.2.0"
